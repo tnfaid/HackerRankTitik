@@ -85,8 +85,8 @@ public class MergedTxt
             String line2;
             ArrayList<ArrayList<String>> arrayList = new ArrayList<>();
 
-            mahasiswa = new BufferedReader(new FileReader("/home/titik/Downloads/jurusan.txt"));
-            jurusan = new BufferedReader(new FileReader("/home/titik/Downloads/mahasiswa.txt"));
+            mahasiswa = new BufferedReader(new FileReader("/home/titik/Downloads/mahasiswa.txt"));
+            jurusan = new BufferedReader(new FileReader("/home/titik/Downloads/jurusan.txt"));
 
             while ((line1 = mahasiswa.readLine()) != null) {
 
@@ -96,6 +96,7 @@ public class MergedTxt
                 String mahasiswaNama = split1[1].trim();
                 String mahasiswaKota = split1[2].trim();
                 String mahasiswaJurusan = split1[3].trim();
+//                System.out.println(line1);
 
                 line2 = jurusan.readLine();
 
@@ -104,22 +105,21 @@ public class MergedTxt
 
                     String jurusanAngka = split2[0].trim();
                     String jurusanProdi = split2[1].trim();
-                    String jurusanCache1 = split2[2].trim();
-                    String jurusanCache2 = split2[3].trim();
-
 
                     ArrayList<String> list = new ArrayList();
                     list.add(jurusanAngka);
                     list.add(jurusanProdi);
                     arrayList.add(list);
+                    //jadi masalahnya ini, ekonomi kagak mau muncul
 
                     if (jurusanAngka.equalsIgnoreCase(mahasiswaJurusan)) {
                         String ok = "--" + mahasiswaNim + "," + mahasiswaNama + "," + mahasiswaKota + "," + jurusanProdi;
                         System.out.println(ok);
                     }
+//                    System.out.println("in iline2  " + line2);
 
-
-                } else {
+                }
+                else {
 
                     String ok =  mahasiswaNim + "," + mahasiswaNama + "," + mahasiswaKota  + "," + doesexist(arrayList, mahasiswaJurusan);
                     System.out.println(ok);
@@ -132,12 +132,74 @@ public class MergedTxt
         }
     }
 
+    public void merged3()
+    {
+        try {
+            BufferedReader mahasiswa = null;
+            BufferedReader jurusan = null;
+
+            String line1;
+            String line2;
+            ArrayList<ArrayList<String>> arrayList = new ArrayList<>();
+
+            mahasiswa = new BufferedReader(new FileReader("/home/titik/Downloads/mahasiswa.txt"));
+            jurusan = new BufferedReader(new FileReader("/home/titik/Downloads/jurusan.txt"));
+
+            while ((line1 = jurusan.readLine()) != null) {
+
+                String[] split1 = line1.split(",");
+
+                String jurusanAngka = split1[0].trim();
+                String jurusanProdi = split1[1].trim();
+//                System.out.println(line1);
+
+                line2 = mahasiswa.readLine();
+
+                if (line2 != null) {
+                    String[] split2 = line2.trim().split(",");
+
+
+
+                    String mahasiswaNim = split2[0].trim();
+                    String mahasiswaNama = split2[1].trim();
+                    String mahasiswaKota = split2[2].trim();
+                    String mahasiswaJurusan = split2[3].trim();
+
+                    ArrayList<String> list = new ArrayList();
+                    list.add(mahasiswaNim);
+                    list.add(mahasiswaNama);
+                    list.add(mahasiswaKota);
+                    list.add(mahasiswaJurusan);
+                    arrayList.add(list);
+                    //jadi masalahnya ini, ekonomi kagak mau muncul
+
+                    if (jurusanAngka.equalsIgnoreCase(mahasiswaJurusan)) {
+                        String ok = "--" + mahasiswaNim + "," + mahasiswaNama + "," + mahasiswaKota + "," + jurusanProdi;
+                        System.out.println(ok);
+                    }
+//                    System.out.println("in iline2  " + line2);
+
+                }
+                System.out.println(line1);
+//                else {
+//
+//                    String ok =  mahasiswaNim + "," + mahasiswaNama + "," + mahasiswaKota  + "," + doesexist(arrayList, mahasiswaJurusan);
+//                    System.out.println(ok);
+//                }
+
+            }
+
+        } catch (Exception ex) {
+            ex.printStackTrace();
+        }
+    }
+
     public static void main( String[] args )
     {
         MergedTxt mergedTxt = new MergedTxt();
         mergedTxt.merged1();
-        System.out.println(" \n\nini merged 2");
-        mergedTxt.merged2();
+        System.out.println(" \n\nini merged 3");
+        mergedTxt.merged3();
     }
 
 }
