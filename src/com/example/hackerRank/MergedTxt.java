@@ -4,6 +4,7 @@ import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileReader;
 import java.io.IOException;
+import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.Scanner;
 
@@ -141,53 +142,80 @@ public class MergedTxt
             String line1;
             String line2;
             ArrayList<ArrayList<String>> arrayList = new ArrayList<>();
+            ArrayList<String> Angka = new ArrayList<>();
+            ArrayList<String> Prodi = new ArrayList<>();
 
             mahasiswa = new BufferedReader(new FileReader("/home/titik/Downloads/mahasiswa.txt"));
             jurusan = new BufferedReader(new FileReader("/home/titik/Downloads/jurusan.txt"));
 
-            while ((line1 = jurusan.readLine()) != null) {
+            while ((line1 = jurusan.readLine()) != null){
 
-                String[] split1 = line1.split(",");
+                String[] arrOfStr = line1.split(",");
+                for( int i = 0; i <arrOfStr.length ; i++ )
+                {
+                    System.out.println(arrOfStr[i]);
+                }
+            }
+            while((line2 = mahasiswa.readLine()) != null){
+                String[] arrOfStr = line2.split(",");
+                for( int i = 0; i <arrOfStr.length ; i++ )
+                {
+                    System.out.println(arrOfStr[i]);
+                    if(i==0) Angka.add(arrOfStr[i]);
+                    else Prodi.add(arrOfStr[i]);
+                }
+                for( String a : Prodi)
+                {
+                    System.out.println("Prodi " + a);
+                }
+            }
 
-                String jurusanAngka = split1[0].trim();
-                String jurusanProdi = split1[1].trim();
-//                System.out.println(line1);
 
-                line2 = mahasiswa.readLine();
-
-                if (line2 != null) {
-                    String[] split2 = line2.trim().split(",");
-
-
-
-                    String mahasiswaNim = split2[0].trim();
-                    String mahasiswaNama = split2[1].trim();
-                    String mahasiswaKota = split2[2].trim();
-                    String mahasiswaJurusan = split2[3].trim();
-
-                    ArrayList<String> list = new ArrayList();
-                    list.add(mahasiswaNim);
-                    list.add(mahasiswaNama);
-                    list.add(mahasiswaKota);
-                    list.add(mahasiswaJurusan);
-                    arrayList.add(list);
-                    //jadi masalahnya ini, ekonomi kagak mau muncul
-
-                    if (jurusanAngka.equalsIgnoreCase(mahasiswaJurusan)) {
-                        String ok = "--" + mahasiswaNim + "," + mahasiswaNama + "," + mahasiswaKota + "," + jurusanProdi;
-                        System.out.println(ok);
-                    }
+//            while ((line1 = jurusan.readLine()) != null) {
+//                ArrayList<String> list0 = new ArrayList();
+//                list0.add(jurusanAngka);
+//                list0.add(jurusanProdi);
+//                arrayList.add(list0);
+//                System.out.println("ini dari list0 "+list0);
+//                //sampai sini masih aman, bisa muncul semua
+//                line2 = mahasiswa.readLine();
+//                System.out.println("coba dah " + line2);
+//
+//                if (line2 != null) {
+//                    String[] split2 = line2.trim().split(",");
+//
+//                    String mahasiswaNim = split2[0].trim();
+//                    String mahasiswaNama = split2[1].trim();
+//                    String mahasiswaKota = split2[2].trim();
+//                    String mahasiswaJurusan = split2[3].trim();
+//
+//                    ArrayList<String> list = new ArrayList();
+//                    list.add(mahasiswaNim);
+//                    list.add(mahasiswaNama);
+//                    list.add(mahasiswaKota);
+//                    list.add(mahasiswaJurusan);
+//                    arrayList.add(list);
+//
+//                    //jadi masalahnya ini, ekonomi kagak mau muncul
+//
+//                    if (jurusanAngka.equalsIgnoreCase(mahasiswaJurusan)) {
+//                        String ok = "--" + mahasiswaNim + "," + mahasiswaNama + "," + mahasiswaKota + "," + jurusanProdi;
+//                        System.out.println(ok);
+//
+//                        System.out.println("ini dari list "+list);
+//                        System.out.println("ini si dari line1 " +line1);
+//                    }
 //                    System.out.println("in iline2  " + line2);
 
-                }
-                System.out.println(line1);
+//                }
+//                System.out.println(line1);
 //                else {
 //
 //                    String ok =  mahasiswaNim + "," + mahasiswaNama + "," + mahasiswaKota  + "," + doesexist(arrayList, mahasiswaJurusan);
 //                    System.out.println(ok);
 //                }
 
-            }
+//            }
 
         } catch (Exception ex) {
             ex.printStackTrace();
