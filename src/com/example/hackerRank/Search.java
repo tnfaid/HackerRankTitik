@@ -39,7 +39,7 @@ public class Search
                 for( int i = 0; i <arrOfStr.length ; i++ )
                 {
                     arrMahasiswa.add(arrOfStr[i]);
-                    ( nim.compareToIgnoreCase(arrMahasiswa.get(0)) )
+//                    ( nim.compareToIgnoreCase(arrMahasiswa.get(0)) )
                     {
                         System.out.println(arrMahasiswa+"\n");
                     }
