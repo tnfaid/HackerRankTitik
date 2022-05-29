@@ -17,6 +17,7 @@ public class SequentiallyDescendingAscending {
         int right = arr.length-1;
         int[] outputArr = new int[arr.length];
 
+        //sorting first
         for(int i=0; i<arr.length; i++)
         {
             for(int j=i+1; j< arr.length;j++)
@@ -27,6 +28,7 @@ public class SequentiallyDescendingAscending {
             }
         }
 
+        //show the result
         for(int i=0; i<arr.length; i++)
         {
             if( i==0 || i%2 == 0)
